@@ -1,9 +1,39 @@
-import React from "react";
+import { collection, getDocs } from "firebase/firestore";
+import React, { useEffect, useState } from "react";
+import { db } from "../firebase-config";
 
 function Home() {
+  const [postList, setPostList] = useState([]);
+
+  const postCollectionRef = collection(db, "posts");
+
+  useEffect(() => {
+    const getPosts = async () => {
+      const data = await getDocs(postCollectionRef);
+      setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getPosts();
+  });
   return (
     <>
-      <div>Home</div>
+      <div className="homePage">
+        {postList.map((post) => {
+          return (
+            <div key={post.id} className="post">
+              <div className="postHeader">
+                <div className="title">
+                  <h2>{post.title}</h2>
+                </div>
+              </div>
+              <div className="postTextContainer">{post.postText}</div>
+              <div className="authorx">
+                <h3>@{post.author.name}</h3>
+                <img src={post.author.img} />
+              </div>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 }

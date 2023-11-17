@@ -16,7 +16,11 @@ function CreatePost() {
     await addDoc(postCollectionRef, {
       title: title,
       postText: postText,
-      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      author: {
+        name: auth.currentUser.displayName,
+        id: auth.currentUser.uid,
+        img: auth.currentUser.photoURL,
+      },
     });
     navigate("/");
   };

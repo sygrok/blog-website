@@ -187,3 +187,14 @@ textarea {
   overflow: hidden;
   overflow-y: auto;
 }
+
+.authorx {
+  display: flex;
+  justify-content: space-between;
+}
+
+img {
+  width: 60px;
+  border-radius: 180px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
+}
