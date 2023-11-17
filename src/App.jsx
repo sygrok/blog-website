@@ -14,6 +14,7 @@ import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import Post from "./pages/Post";
+import EditPost from "./pages/EditPost";
 
 function App() {
   const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
@@ -47,6 +48,7 @@ function App() {
           )}
           <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
           <Route path="/:id" element={<Post />} />
+          <Route path="/:id/edit" element={<EditPost />} />
         </Routes>
       </Router>
     </>

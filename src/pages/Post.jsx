@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { collection, doc, getDoc } from "firebase/firestore";
-import { db } from "../firebase-config";
+import { auth, db } from "../firebase-config";
 
 function Post() {
   const [postData, setPostData] = useState(null);
@@ -27,10 +27,17 @@ function Post() {
     return <div>Loading...</div>;
   }
 
+  const handleEditClick = () => {
+    navigate(`/${id}/edit`);
+  };
+
   return (
     <div className="singlePost">
       <h2>{postData.title}</h2>
       <p>{postData.postText}</p>
+      {localStorage.isAuth && postData.author.id === auth.currentUser.uid && (
+        <button onClick={handleEditClick}>edit</button>
+      )}
       <div className="author">
         <h3>@{postData.author.name}</h3>
         <img src={postData.author.img} alt={postData.author.name} />
