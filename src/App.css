@@ -198,3 +198,10 @@ img {
   border-radius: 180px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
 }
+.bb {
+  width: 80px;
+  padding: auto;
+  background-color: black;
+  border: none;
+  color: white;
+}

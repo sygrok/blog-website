@@ -30,11 +30,13 @@ function App() {
       <Router>
         <nav>
           <Link to="/">Home</Link>
-          {localStorage.isAuth && <Link to="/createpost">create post</Link>}
+          {localStorage.isAuth && <Link to="/createpost">Post</Link>}
           {!localStorage.isAuth ? (
             <Link to="/login">Login</Link>
           ) : (
-            <button onClick={signUserOut}>Logout</button>
+            <button className="bb" onClick={signUserOut}>
+              <h2>Logout</h2>
+            </button>
           )}
         </nav>
         <Routes>
