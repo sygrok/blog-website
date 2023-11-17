@@ -1,9 +1,11 @@
 import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../firebase-config";
+import { useNavigate } from "react-router-dom";
 
 function Home({ isAuth }) {
   const [postList, setPostList] = useState([]);
+  const navigate = useNavigate();
 
   const postCollectionRef = collection(db, "posts");
 
@@ -19,6 +21,11 @@ function Home({ isAuth }) {
     const postDoc = doc(db, "posts", id);
     await deleteDoc(postDoc);
   };
+
+  const goToArticle = (id) => {
+    navigate(`/${id}`);
+  };
+
   return (
     <>
       <div className="homePage">
@@ -43,6 +50,9 @@ function Home({ isAuth }) {
                 </div>
               </div>
               <div className="postTextContainer">{post.postText}</div>
+              <button onClick={() => goToArticle(post.id)}>
+                Go to Article
+              </button>
               <div className="authorx">
                 <h3>@{post.author.name}</h3>
                 <img src={post.author.img} />

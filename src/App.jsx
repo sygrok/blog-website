@@ -13,9 +13,10 @@ import "./App.css";
 import { useState } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
+import Post from "./pages/Post";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth"));
 
   //logout
   const signUserOut = () => {
@@ -45,6 +46,7 @@ function App() {
             <Route path="/createpost" element={<CreatePost />} />
           )}
           <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+          <Route path="/:id" element={<Post />} />
         </Routes>
       </Router>
     </>
