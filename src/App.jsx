@@ -30,7 +30,7 @@ function App() {
       <Router>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/createpost">create post</Link>
+          {localStorage.isAuth && <Link to="/createpost">create post</Link>}
           {!localStorage.isAuth ? (
             <Link to="/login">Login</Link>
           ) : (
@@ -39,7 +39,9 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/createpost" element={<CreatePost />} />
+          {localStorage.isAuth && (
+            <Route path="/createpost" element={<CreatePost />} />
+          )}
           <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
         </Routes>
       </Router>
