@@ -32,13 +32,20 @@ function Post() {
   };
 
   return (
-    <div className="singlePost">
-      <h2>{postData.title}</h2>
+    <div className="postPage">
+      <h2>
+        {postData.title}
+        {"\u00A0"}
+        {"\u00A0"}
+        {localStorage.isAuth && postData.author.id === auth.currentUser.uid && (
+          <button className="button" onClick={handleEditClick}>
+            &#9998;
+          </button>
+        )}
+      </h2>
       <p>{postData.postText}</p>
-      {localStorage.isAuth && postData.author.id === auth.currentUser.uid && (
-        <button onClick={handleEditClick}>edit</button>
-      )}
-      <div className="author">
+
+      <div className="authorx">
         <h3>@{postData.author.name}</h3>
         <img src={postData.author.img} alt={postData.author.name} />
       </div>

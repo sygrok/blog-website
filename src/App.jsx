@@ -36,9 +36,7 @@ function App() {
           {!localStorage.isAuth ? (
             <Link to="/login">Login</Link>
           ) : (
-            <button className="bb" onClick={signUserOut}>
-              <h2>Logout</h2>
-            </button>
+            <Link onClick={signUserOut}>Logout</Link>
           )}
         </nav>
         <Routes>

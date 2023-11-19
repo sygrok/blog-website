@@ -5,6 +5,7 @@ body {
   padding: 0%;
   margin: 0%;
   font-family: Arial, Helvetica, sans-serif;
+  background-color: lightgray;
 }
 
 nav {
@@ -98,7 +99,6 @@ textarea {
   font-size: 30px;
 }
 
-/* GOOGLE BUTTOn */
 .login-with-google-btn {
   cursor: pointer;
   transition: background-color 0.3s, box-shadow 0.3s;
@@ -149,10 +149,10 @@ textarea {
   height: auto;
   max-height: 600px;
   background-color: rgb(250, 250, 250);
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 3px 8px;
   margin: 20px;
   padding: 20px;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 .post .postHeader {
@@ -191,6 +191,9 @@ textarea {
 .authorx {
   display: flex;
   justify-content: space-between;
+  background-color: bisque;
+  padding: 15px;
+  margin-top: 25px;
 }
 
 img {
@@ -203,5 +206,67 @@ img {
   padding: auto;
   background-color: black;
   border: none;
+  color: white;
+}
+
+.title:hover {
+  color: green;
+  cursor: pointer;
+}
+
+.postPage {
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 3px 8px;
+  width: 500px;
+  padding: 50px;
+  margin: 25px auto;
+  background-color: white;
+}
+
+.button {
+  border: none;
+  border-radius: 5px;
+  font-size: larger;
+}
+
+.button:hover {
+  background-color: black;
+  color: white;
+}
+
+.editPage {
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.8) 0px 3px 8px;
+  width: 500px;
+  padding: 50px;
+  margin: 25px auto;
+  background-color: white;
+  height: auto;
+}
+
+.editPage form {
+  display: flex;
+  flex-direction: column;
+}
+
+.editPage input {
+  width: 250px;
+}
+
+.editPage textarea {
+  word-wrap: break-word;
+  height: 300px;
+}
+.editPage button {
+  width: 100px;
+  background-color: black;
+  color: white;
+  padding: 5px;
+  font-size: large;
+  margin-top: 15px;
+}
+
+.editPage button:hover {
+  background-color: gray;
   color: white;
 }

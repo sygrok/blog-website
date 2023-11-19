@@ -43,7 +43,8 @@ function EditPost() {
     }));
   };
 
-  const handleEditPost = async () => {
+  const handleEditPost = async (event) => {
+    event.preventDefault();
     try {
       const postDoc = doc(db, "posts", id);
       await updateDoc(postDoc, {
@@ -61,7 +62,7 @@ function EditPost() {
   }
 
   return (
-    <div className="editPost">
+    <div className="editPage">
       <h2>Edit Post</h2>
       <form>
         <label htmlFor="title">Title:</label>
@@ -79,7 +80,7 @@ function EditPost() {
           value={postData.postText}
           onChange={handleInputChange}
         ></textarea>
-        <button type="button" onClick={handleEditPost}>
+        <button className="button" onClick={handleEditPost}>
           Save Changes
         </button>
       </form>

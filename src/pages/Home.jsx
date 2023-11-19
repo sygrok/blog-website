@@ -9,13 +9,14 @@ function Home({ isAuth }) {
 
   const postCollectionRef = collection(db, "posts");
 
+  const getPosts = async () => {
+    const data = await getDocs(postCollectionRef);
+    setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
   useEffect(() => {
-    const getPosts = async () => {
-      const data = await getDocs(postCollectionRef);
-      setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
     getPosts();
-  });
+  }, [getPosts]);
 
   const deletePost = async (id) => {
     const postDoc = doc(db, "posts", id);
@@ -34,12 +35,17 @@ function Home({ isAuth }) {
             <div key={post.id} className="post">
               <div className="postHeader">
                 <div className="title">
-                  <h2>{post.title}</h2>
+                  <h2 className="title" onClick={() => goToArticle(post.id)}>
+                    {post.title}
+                    {"\u00A0"}
+                    &#8594;
+                  </h2>
                 </div>
                 <div className="deletePost">
                   {localStorage.isAuth &&
                     post.author.id === auth.currentUser.uid && (
                       <button
+                        className="button"
                         onClick={() => {
                           deletePost(post.id);
                         }}
@@ -50,9 +56,7 @@ function Home({ isAuth }) {
                 </div>
               </div>
               <div className="postTextContainer">{post.postText}</div>
-              <button onClick={() => goToArticle(post.id)}>
-                Go to Article
-              </button>
+
               <div className="authorx">
                 <h3>@{post.author.name}</h3>
                 <img src={post.author.img} />
