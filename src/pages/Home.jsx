@@ -1,4 +1,11 @@
-import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { auth, db } from "../firebase-config";
 import { useNavigate } from "react-router-dom";
@@ -6,11 +13,11 @@ import { useNavigate } from "react-router-dom";
 function Home({ isAuth }) {
   const [postList, setPostList] = useState([]);
   const navigate = useNavigate();
-
   const postCollectionRef = collection(db, "posts");
+  const orderedPostsQuery = query(postCollectionRef, orderBy("date", "desc"));
 
   const getPosts = async () => {
-    const data = await getDocs(postCollectionRef);
+    const data = await getDocs(orderedPostsQuery);
     setPostList(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
@@ -56,9 +63,10 @@ function Home({ isAuth }) {
                 </div>
               </div>
               <div className="postTextContainer">{post.postText}</div>
-
               <div className="authorx">
                 <h3>@{post.author.name}</h3>
+                <h4>date: {post.date}</h4>
+
                 <img src={post.author.img} />
               </div>
             </div>

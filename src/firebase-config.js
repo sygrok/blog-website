@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, orderBy } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
